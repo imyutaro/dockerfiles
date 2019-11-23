@@ -1,0 +1,65 @@
+FROM nvidia/cuda:9.0-cudnn7-devel-ubuntu16.04
+
+USER root
+
+# nodejs is needed for jupyter lab
+RUN apt-get update && \
+    apt-get -y install locales \
+    vim less \
+    zsh git wget curl && \
+    localedef -f UTF-8 -i en_US en_US.UTF-8
+RUN curl -sL https://deb.nodesource.com/setup_11.x | bash - && \
+    apt-get update && \
+    apt-get -y install nodejs
+
+# install python and pip
+RUN apt-get update && \
+    apt-get -y install build-essential libbz2-dev libdb-dev \
+      libreadline-dev libffi-dev libgdbm-dev liblzma-dev \
+      libncursesw5-dev libsqlite3-dev libssl-dev \
+      zlib1g-dev uuid-dev tk-dev
+RUN wget https://www.python.org/ftp/python/3.7.5/Python-3.7.5.tgz && \
+    tar xzf Python-3.7.5.tgz
+WORKDIR /Python-3.7.5
+RUN ./configure --enable-shared && \
+    make install && \
+    sh -c "echo '/usr/local/lib' > /etc/ld.so.conf.d/custom_python3.conf" && \
+    ldconfig && \
+    curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && \
+    python3 get-pip.py
+WORKDIR /
+RUN rm -r Python-3.7.5.tgz Python-3.7.5
+
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US:en
+ENV LC_ALL en_US.UTF-8
+ENV TZ JST-9
+ENV TERM xterm
+
+RUN pip install --upgrade pip && \
+    pip install --upgrade setuptools
+
+ARG USER_NAME
+ARG USER_ID
+ARG NAME
+RUN useradd -u $USER_ID -m $USER_NAME
+
+WORKDIR /home/$USER_NAME
+COPY ./req.txt ./
+RUN pip install -r ./req.txt && \
+    rm ./req.txt
+
+RUN jupyter labextension install jupyterlab_vim
+
+USER $USER_NAME
+# run the installation script and create my simple .zshrc
+RUN wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh || true \
+    touch $HOME/.zshrc && \
+    echo 'export ZSH=${HOME}/.oh-my-zsh' > $HOME/.zshrc && \
+    echo 'ZSH_THEME="mh"' >> $HOME/.zshrc && \
+    echo 'plugins=(git)' >> $HOME/.zshrc && \
+    echo 'source $ZSH/oh-my-zsh.sh' >> $HOME/.zshrc && \
+    echo 'alias python=python3' >> $HOME/.zshrc
+
+WORKDIR /home/$USER_NAME/$NAME
+
