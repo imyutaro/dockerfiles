@@ -14,6 +14,8 @@ Using `docker-compose`.
 ```bash
 # Build and run docker container.
 ./start.sh Dockerfile_name
+# Enter a docker container
+docker exec -it experiment zsh
 ```
 
 ## GPU ver
@@ -31,4 +33,6 @@ so I use `docker build` and `docker run`.
 ```bash
 # Build and run docker container.
 ./start_gpu.sh Dockerfile_name
+# Enter a docker container
+docker exec -it experiment-gpu zsh
 ```
