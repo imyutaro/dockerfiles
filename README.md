@@ -30,5 +30,5 @@ so I use `docker build` and `docker run`.
 
 ```bash
 # Build and run docker container.
-./start\_gpu.sh Dockerfile_name
+./start_gpu.sh Dockerfile_name
 ```
