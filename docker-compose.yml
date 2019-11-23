@@ -2,7 +2,7 @@ version: '3.7'
 services:
   python3:
     image: "experiment"
-    container_name: "fm"
+    container_name: "experiment"
     init: true
     user: "${USER_ID}:${GROUP_ID}"
     restart: always
@@ -10,11 +10,12 @@ services:
     working_dir: "/home/${USER_NAME}/"
     tty: true
     volumes:
-      - ./:/home/${USER_NAME}/fm/
+      - ./:/home/${USER_NAME}/experiment/
     ports:
       - "8888:8888"
     build:
       context: .
+      dockerfile: "${Dockerfile}"
       args:
         - USER_ID=${USER_ID}
         - USER_NAME=${USER_NAME}

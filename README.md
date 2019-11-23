@@ -11,6 +11,11 @@ Using `docker-compose`.
 * start.sh
   * Shell script for `docker-compose up`.
 
+```bash
+# Build and run docker container.
+./start.sh Dockerfile_name
+```
+
 ## GPU ver
 
 I want to use docker-compose but `docker-compose` doesn't support gpus option,
@@ -23,3 +28,7 @@ so I use `docker build` and `docker run`.
 * start\_gpu.sh
   * Shell script for `docker build` and `docker run`.
 
+```bash
+# Build and run docker container.
+./start\_gpu.sh Dockerfile_name
+```
