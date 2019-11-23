@@ -5,10 +5,11 @@
 Using `docker-compose`.
 
 * Dockerfile-python
-  * Dockerfile based on python.
+  * Base image is python3.
 * docker-compose.yml
+  * Set options for docker-compose up(docker run).
 * start.sh
-  * shell script for docker-copose up.
+  * Shell script for `docker-compose up`.
 
 ## GPU ver
 
@@ -16,8 +17,9 @@ I want to use docker-compose but `docker-compose` doesn't support gpus option,
 so I use `docker build` and `docker run`.
 
 * Dockerfile-nvidia
-  * Dockerfile based on nvidia images
+  * Base image is nvidia.
 * Dockerfile-pytorch
-  * Dockerfile based on pytorch images
+  * Base image is pytorch.
 * start\_gpu.sh
-  * shell script for docker build and run.
+  * Shell script for `docker build` and `docker run`.
+
