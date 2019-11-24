@@ -17,7 +17,7 @@ Using `docker-compose`.
 # Enter a docker container
 docker exec -it experiment zsh
 
-# If you want to use specific cantainer and image name
+# If you want to use specific container and image name
 NAME=cpu ./start.sh
 # If you want to use specific port (default port 8888)
 PORT=9000 ./start.sh
@@ -41,7 +41,7 @@ so I use `docker build` and `docker run`.
 # Enter a docker container
 docker exec -it experiment-gpu zsh
 
-# If you want to use specific cantainer and image name
+# If you want to use specific container and image name
 NAME=gpu ./start.sh
 # If you want to use specific port (default port 8888)
 PORT=9000 ./start.sh
