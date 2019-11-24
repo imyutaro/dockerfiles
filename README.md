@@ -12,10 +12,15 @@ Using `docker-compose`.
   * Shell script for `docker-compose up`.
 
 ```bash
-# Build and run docker container.
+# Build and run docker container
 ./start.sh Dockerfile_name
 # Enter a docker container
 docker exec -it experiment zsh
+
+# If you want to use specific cantainer and image name
+NAME=cpu ./start.sh
+# If you want to use specific port (default port 8888)
+PORT=9000 ./start.sh
 ```
 
 ## GPU ver
@@ -31,8 +36,13 @@ so I use `docker build` and `docker run`.
   * Shell script for `docker build` and `docker run`.
 
 ```bash
-# Build and run docker container.
+# Build and run docker container
 ./start_gpu.sh Dockerfile_name
 # Enter a docker container
 docker exec -it experiment-gpu zsh
+
+# If you want to use specific cantainer and image name
+NAME=gpu ./start.sh
+# If you want to use specific port (default port 8888)
+PORT=9000 ./start.sh
 ```

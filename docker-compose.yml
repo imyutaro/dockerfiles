@@ -12,14 +12,14 @@ services:
     volumes:
       - ./:/home/${USER_NAME}/experiment/
     ports:
-      - "8888:8888"
+      - "${PORT}:${PORT}"
     build:
       context: .
       dockerfile: "${Dockerfile}"
       args:
         - USER_ID=${USER_ID}
         - USER_NAME=${USER_NAME}
-    command: jupyter lab --ip=0.0.0.0 --no-browser
+    command: jupyter lab --ip=0.0.0.0 --no-browser --port=${PORT}
 
     # If you exec jupyter as root, you need --allow-root.
     # But I mapped UID to non root, so I don't need --allow-root.

@@ -1,9 +1,9 @@
-#!/usr/bin/zsh
+#!/usr/bin/zsh -e
 
-Dockerfile=${1:-"Dockerfile-pytorch"}
+Dockerfile=${1:-Dockerfile-pytorch}
+NAME=${NAME:-experiment-gpu}
+PORT=${PORT:-8888}
 USER_NAME=docker
-NAME=experiment-gpu
-PORT=9999
 sudo docker build --build-arg USER_ID=${UID} \
                   --build-arg USER_NAME=$USER_NAME \
                   --build-arg NAME=$NAME \
