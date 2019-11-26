@@ -1,5 +1,10 @@
 # Dockerfiles for deep learning experiments.
 
+All Dockerfiles below include
+
+* Python
+* Jupyter lab
+
 ## CPU ver
 
 Using `docker-compose`.
@@ -19,13 +24,13 @@ docker exec -it experiment zsh
 
 # If you want to use specific container and image name
 NAME=cpu ./start.sh
-# If you want to use specific port (default port 8888)
+# If you want to use specific port for jupyter lab (default port 8888)
 PORT=9000 ./start.sh
 ```
 
 ## GPU ver
 
-I want to use docker-compose but `docker-compose` doesn't support gpus option,
+I want to use `docker-compose` but `docker-compose` doesn't support gpus option,
 so I use `docker build` and `docker run`.
 
 * Dockerfile-nvidia
@@ -43,6 +48,6 @@ docker exec -it experiment-gpu zsh
 
 # If you want to use specific container and image name
 NAME=gpu ./start.sh
-# If you want to use specific port (default port 8888)
+# If you want to use specific port for jupyter lab (default port 8888)
 PORT=9000 ./start.sh
 ```
