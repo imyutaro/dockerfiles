@@ -57,6 +57,7 @@ RUN wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -
     touch $HOME/.zshrc && \
     echo 'export ZSH=${HOME}/.oh-my-zsh' > $HOME/.zshrc && \
     echo 'ZSH_THEME="mh"' >> $HOME/.zshrc && \
+    echo 'DISABLE_AUTO_UPDATE="true"' >> $HOME/.zshrc && \
     echo 'plugins=(git)' >> $HOME/.zshrc && \
     echo 'source $ZSH/oh-my-zsh.sh' >> $HOME/.zshrc && \
     echo 'alias python=python3' >> $HOME/.zshrc
