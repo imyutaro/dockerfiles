@@ -1,4 +1,4 @@
-jupyterlab
+jupyterlab==1.0.0
 tqdm
 torch
 numpy
