@@ -17,7 +17,9 @@ RUN pip install --upgrade pip && \
 
 ARG USER_NAME
 ARG USER_ID
-RUN useradd -u $USER_ID -m $USER_NAME
+# I dont know -l option menas...
+# ref : https://github.com/moby/moby/issues/28920#issuecomment-263496510
+RUN useradd -l -u $USER_ID -m $USER_NAME
 
 WORKDIR /home/$USER_NAME
 COPY ./req.txt ./
